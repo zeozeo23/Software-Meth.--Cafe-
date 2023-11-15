@@ -1,279 +1,81 @@
 <template>
-  <q-page>
-    <div class="col-12 full-height">
-      <div class="row">
-        <div class="col-6 bg-image">
-          <q-card flat class="bg-image">
-            <div class="loginimgStyle">
-              <q-img src="../assets/loginpage.webp" :ratio="1" />
-            </div>
-          </q-card>
-        </div>
-        <div class="col-6">
-          <q-card square flat style="min-height: 100%">
-            <div class="loginForm" style="padding-top: 25%">
-              <div
-                class="q-pb-xs text-blue-8 text-weight-bolder"
-                style="font-size: 48px"
-              >
-                Login
+  <q-layout view="lHh Lpr lFf">
+    <q-page-container class="pt-0-important bg-auth">
+      <q-page>
+        <div class="row" style="height: 100vh">
+          <div class="col-12 flex content-center justify-center">
+                  
+            <q-card class="q-ma-xl">
+              <div class="row">
+                <div class="col-0 col-sm-5 bg-primary rounded-left-borders xs-hide">
+                  <div class="row q-ml-sm q-mt-sm">
+                    <div class="col-12 justify-center fredoka text-subtitle1">
+                      <div class="text-white" style="text-decoration: none" to="/">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row  q-px-xl q-pb-xl flex flex-center">
+                    <div class="">
+                      <q-img
+                        src="../assets/coffee.jpg"
+                       
+                      />
+                      <div class="text-subtitle1 text-uppercase text-white fredoka" >WELCOME TO UNTITLED CAFE!</div>
+                      <div class="text-white q-my-sm text-subtitle6"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-7">
+                  <div class="row q-pa-sm-sm q-pa-md">
+                    <div class="col-12">
+                      <q-card-section>
+                        <div class="q-mb-xl">
+                          <div class="flex justify-center">
+                            <div class="text-h4 text-uppercase q-my-none text-weight-bold text-primary fredoka">Login</div>
+                          </div>
+                        </div>
+                        <q-form class="q-gutter-md" @submit="submitForm">
+                          <!-- <q-input  label="Nome de usuário"
+                                  v-bind="$input"/>
+                          <q-input  label="Senha" 
+                                  name="password" type="password" v-bind="$input"/> -->
+                        <q-input
+                          v-model="form.id"
+                          label="ID"
+                          outlined
+                        />
+                        <q-input
+                          v-model="form.password"
+                          label="Password"
+                          type="password"
+                          outlined
+                        />
+                          <div>
+                            <q-btn class="full-width fredoka" color="primary" label="Login" @click="login()"
+                                  type="submit">
+                            </q-btn>
+                           
+                          </div>
+                        </q-form>
+                      </q-card-section>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div
-                class="q-pb-md text-grey-8 text-weight-regular"
-                style="font-size: 20px"
-              >
-                Welcome back!
-              </div>
-              <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-                <!-- <q-input
-                filled
-                v-model="name"
-                label="Username"
-                lazy-rules
-                :rules="[
-                  (val) =>
-                    (val && val.length > 0) || 'Please type Username',
-                ]"
-              /> -->
-                <q-input outlined v-model="name" label="Username" />
-                <!-- <q-input
-                filled
-                type="password"
-                v-model="password"
-                label="Password"
-                lazy-rules
-                :rules="[
-                  (val) =>
-                    (val !== null && val !== '') ||
-                    'Please type your password',
-                  (val) =>
-                    (val > 0 && val < 100) || 'Please type a real age',
-                ]"
-              /> -->
-                <q-input
-                  outlined
-                  type="password"
-                  v-model="password"
-                  label="Password"
-                />
-                <div class="forgetremember row">
-                  <div class="remember-me">
-                    <input
-                      class="styled-checkbox"
-                      id="styled-checkbox-1"
-                      type="checkbox"
-                      value="value1"
-                    />
-                    <span for="styled-checkbox-1" style="padding-left: 10px"
-                      >Remember me</span
-                    >
-                  </div>
-                  <div>
-                    <q-btn
-                      flat
-                      rounded
-                      color="primary"
-                      no-caps
-                      label="Forget Password?"
-                    />
-                  </div>
-                </div>
+            </q-card>
 
-                <div>
-                  <q-btn
-                    class="full-width"
-                    label="Login"
-                    type="submit"
-                    color="primary"
-                  />
-
-                  <!-- <q-btn
-                  label="Reset"
-                  type="reset"
-                  color="primary"
-                  flat
-                  class="q-ml-sm"
-                /> -->
-                </div>
-                <div class="row" style="justify-content: center">
-                  <div>
-                    Dont have an account?
-                    <q-btn
-                      flat
-                      rounded
-                      color="primary"
-                      @click="signupPage"
-                      no-caps
-                      label="Sign up"
-                    />
-                  </div>
-                </div>
-              </q-form>
-            </div>
-          </q-card>
-        </div>
-      </div>
-    </div>
-    <!-- <div class="row">
-      
-      <q-card round class="shadow-24" style="width:400px;height:540px;">
-        <div class="text-h4 q-pt-lg primary text-center text-weight-bold">
-          {{ title }}
-        </div>
-        <div v-if="forget" class="text-center q-mt-md">
-          Enter your email to below to receive your password reset instructions
-        </div>
-        <q-card-section>
-          <q-form class="q-px-sm q-pt-md">
-            <q-input 
-                v-if="forget"
-                ref="email"
-                square 
-                clearable 
-                v-model="email" 
-                type="email"
-                lazy-rules
-                :rules="[this.required,this.isEmail,this.short]"
-                label="Email">
-              <template v-slot:prepend>
-                <q-icon name="email" />
-              </template>
-            </q-input>
-            <q-input 
-                v-if="!register  && !forget"
-                ref="email"
-                square 
-                clearable 
-                v-model="email" 
-                type="email"
-                lazy-rules
-                :rules="[this.required,this.isEmail,this.short]"
-                label="Email">
-              <template v-slot:prepend>
-                <q-icon name="email" />
-              </template>
-            </q-input>
-            <q-input  
-                v-if="!register && !forget"
-                ref="password"
-                square 
-                clearable 
-                v-model="password"                                                        
-                :type="passwordFieldType"  
-                lazy-rules
-                :rules="[val => !!val || 'Password is required',this.short]"
-                label="Password"
-              >
-              
-              <template v-slot:prepend>
-                <q-icon name="lock" />
-              </template>
-              <template v-slot:append>
-                <q-icon 
-                :name="visibilityIcon"                                 
-                @click="switchVisibility"                             
-                class="cursor-pointer" 
-                />
-              </template>
-            </q-input>
-            <div class="row justify-end q-pb-none q-pt-none">
-              <q-btn flat no-caps v-if="!register && !forget"  class="text-grey-9" @click="forgetPassword" >Forgot Password?</q-btn>
-            </div>
-            
-            <q-input 
-                v-if="register"
-                ref="regEmail"
-                square 
-                clearable 
-                v-model="regEmail" 
-                type="email"
-                lazy-rules
-                :rules="[val => !!val || 'Email is required',this.isEmail,this.short]"
-                label="Email">
-              <template v-slot:prepend>
-                <q-icon name="email" />
-              </template>
-            </q-input>
-            <q-input
-                v-if="register"
-                ref="regPassword"
-                square 
-                clearable 
-                v-model="regPassword"                                                        
-                :type="passwordFieldType"  
-                lazy-rules
-                :rules="[val => !!val || 'Password is required',this.short]"
-                label="Password"
-              >
-              
-              <template v-slot:prepend>
-                <q-icon name="lock" />
-              </template>
-              <template v-slot:append>
-                <q-icon 
-                :name="visibilityIcon"                                 
-                @click="switchVisibility"                             
-                class="cursor-pointer" 
-                />
-              </template>
-            </q-input>
-            <q-input 
-                ref="regRePassword"
-                v-if="register" 
-                square 
-                clearable 
-                v-model="regRePassword"                                                       
-                :type="rePasswordFieldType" 
-                lazy-rules
-                :rules="[val => !!val || 'Repeat Password is required',this.short,this.diffPassword]"
-                label="Repeat Password">
-              <template v-slot:prepend>
-                <q-icon name="lock" />
-              </template>
-              <template v-slot:append>
-              <q-icon 
-                    :name="revisibilityIcon"                                
-                    @click="switchrePassVisibility"                              
-                    class="cursor-pointer" 
-              />
-              </template>
-            </q-input>
-            
-          </q-form>
-        </q-card-section>
-        
-        <q-card-actions class="q-px-lg q-pt-none">
-          <q-btn 
-            no-caps
-            unelevated 
-            size="lg" 
-            style="background: #AD974F" 
-            @click="submit"
-            class="full-width text-white"                          
-            :label="btnLabel" />
-        </q-card-actions>
-        <q-card-actions align="around">
-          <div class="row" v-if="register">
-            <div class="q-mt-sm text-grey-9">Have an account?</div>
-            <q-btn flat no-caps v-if="register"  class="text-grey-9" @click="switchTypeForm" >Log in</q-btn>
           </div>
-          <div class="row" v-if="!register  && !forget ">
-          <div class="q-mt-sm text-grey-9">Don't have an account?</div>
-          <q-btn flat no-caps class="text-grey-9" @click="switchTypeForm" >Sign up</q-btn>
-          </div>
-        
-        </q-card-actions>
-        <q-card-actions v-if="forget" align="right">
-        <div class="row" v-if="forget">
-            <q-btn flat no-caps v-if="forget"  class="text-grey-9" @click="goLoginPage" >Back to Login Page</q-btn>
-          </div>
-        </q-card-actions>
-      </q-card>
-    </div> -->
-  </q-page>
+        </div>
+      </q-page>
+    </q-page-container>
+  </q-layout>
 </template>
 
+
+
 <script>
+import { api } from 'boot/axios';
+import store from 'src/store/index';
 export default {
   name: "loginPage",
   data() {
@@ -294,6 +96,10 @@ export default {
       revisibilityIcon: "visibility",
       forget: false,
       name: "",
+      form: {
+        id: '',
+        password: ''
+      }
     };
   },
   watch: {
@@ -319,34 +125,87 @@ export default {
         /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/;
       return emailPattern.test(val) || "Please enter a valid email address";
     },
-    onSubmit() {
-      //   if (this.register){
-      //       this.$refs.regEmail.validate()
-      //       this.$refs.regPassword.validate()
-      //       this.$refs.regRePassword.validate()
-      //    } else {
-      //       this.$refs.email.validate()
-      //       this.$refs.password.validate()
-      //    }
+    async getUserRole() {
+      try {
+        const sessionToken = store.state.sessionToken;
+        const response = await api.get('http://116.87.140.63:5000/api/v1/getUserProfile', {
+          headers: {
+            Authorization: `Bearer ${sessionToken}`,
+          },
+        });
 
-      //    if (!this.register)
-      //      if (!this.$refs.email.hasError && (!this.$refs.password.hasError))
-      //  {
+        if (response.status === 200) {
+          const userType = response.data.message.Type;
+          switch (userType) {
+            case 'Administrator':
+              return 'administrator';
+            case 'Staff':
+              return 'staff';
+            case 'Owner':
+              return 'owner';
+            default:
+              return 'manager';
+          }
+        } else {
+          console.error(`Failed to retrieve user profile. Status: ${response.status}`);
+          return 'unknown';
+        }
+      } catch (error) {
+        console.error('Error retrieving user profile:', error);
+        return 'unknown';
+      }
+    },
+    onSubmit() {
+      
       this.$q.notify({
         icon: "done",
         color: "positive",
         message: "done",
         position: "top",
       });
-      this.$router.push("/workslot");
+      this.$router.push("/profile");
 
       //  }
     },
-    signupPage() {
-      this.$router.push("/signup");
+    async login() {
+      const payload = {
+        ID: this.form.id,
+        Password: this.form.password,
+      };
+      try {
+        const response = await api.post('http://116.87.140.63:5000/api/v1/login',
+         payload, {
+          headers: { "Content-Type": "application/json" },
+        });
+        const sessionToken = response.data.sessionToken;
+        console.log('test')
+        console.log(sessionToken)
+        // Dispatch the action to set the session token in the store
+        this.$store.dispatch('setSessionToken', sessionToken);
+       
+        const userRole = await this.getUserRole();
 
-      //  }
+        // Redirect based on user role
+        switch (userRole) {
+          case 'administrator':
+            this.$router.push("/admin/profile");
+            break;
+          case 'staff':
+            this.$router.push("/staff/profile");
+            break;
+          case 'owner':
+            this.$router.push("/owner/profile");
+            break;
+          default:
+            this.$router.push("/manager/profile");
+            break;
+        }
+      } catch (error) {
+        console.error("Error occurred during login:", error);
+        // Handle the error, such as displaying an error message to the user.
+      }
     },
+
     goLoginPage() {
       this.register = true;
       this.forget = false;
