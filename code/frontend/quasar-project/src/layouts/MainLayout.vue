@@ -1,10 +1,9 @@
 <template>
   <q-layout
     view="lHh Lpr lFf"
-    style="max-height: 900px; height: 800px"
+    
     class="shadow-2 rounded-borders"
   >
-    <!-- <q-header elevated class="bg-cyan-8"> -->
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -35,14 +34,12 @@
       :width="300"
       :breakpoint="400"
     >
-      <q-scroll-area
-        style="
-          height: calc(100% - 180px);
-          margin-top: 100px;
-          border-right: 1px solid #ddd;
-        "
-      >
-        <q-list>
+     
+        <q-list style="
+         
+          margin-top: 180px;
+        
+        ">
           <q-item-label header> </q-item-label>
          
           <q-item clickable v-ripple to="/profile">
@@ -72,6 +69,15 @@
               >Work Slot</q-item-section
             >
           </q-item>
+          <q-item clickable v-ripple to="/approveShift">
+            <q-item-section avatar>
+              <q-icon name="format_size" />
+            </q-item-section>
+
+            <q-item-section style="font-size: 18px"
+              >Review Shift</q-item-section
+            >
+          </q-item>
           <q-item clickable v-ripple to="/userPage">
             <q-item-section avatar>
               <q-icon name="format_size" />
@@ -81,13 +87,40 @@
               >All User Profile</q-item-section
             >
           </q-item>
+          <q-item clickable v-ripple to="/myBid">
+            <q-item-section avatar>
+              <q-icon name="format_size" />
+            </q-item-section>
+
+            <q-item-section style="font-size: 18px"
+              >My Bids</q-item-section
+            >
+          </q-item>
+          <q-item clickable v-ripple to="/staffTest">
+            <q-item-section avatar>
+              <q-icon name="format_size" />
+            </q-item-section>
+
+            <q-item-section style="font-size: 18px"
+              >Staff API</q-item-section
+            >
+          </q-item>
+          <q-item clickable v-ripple to="/managerTest">
+            <q-item-section avatar>
+              <q-icon name="format_size" />
+            </q-item-section>
+
+            <q-item-section style="font-size: 18px"
+              >ManagerAPI</q-item-section
+            >
+          </q-item>
         </q-list>
-      </q-scroll-area>
+      
       <!-- <q-img class="absolute-top q-mt-md" src="../assets/MainLogo.png" style="height: auto width: auto">
         
         </q-img> -->
       <q-img class="absolute-top" >
-        <div class="absolute-bottom bg-black">
+        <div class="absolute-bottom">
             <q-avatar size="56px" class="q-mb-sm">
               <img src="../assets/cafe.png">
             </q-avatar>
@@ -97,7 +130,7 @@
       </q-img>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container class="page-container">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -106,39 +139,6 @@
 <script>
 import { defineComponent, ref } from "vue";
 // import EssentialLink from "components/EssentialLink.vue";
-
-const linksList = [
-  {
-    title: "test",
-    caption: "quasar.dev",
-    icon: "school",
-    link: "https://quasar.dev",
-  },
-  {
-    title: "Import File",
-    caption: "github.com/quasarframework",
-    icon: "code",
-    link: "https://github.com/quasarframework",
-  },
-  {
-    title: "Export File",
-    caption: "chat.quasar.dev",
-    icon: "chat",
-    link: "https://chat.quasar.dev",
-  },
-  {
-    title: "Send File",
-    caption: "forum.quasar.dev",
-    icon: "record_voice_over",
-    link: "https://forum.quasar.dev",
-  },
-  {
-    title: "Receive File",
-    caption: "@quasarframework",
-    icon: "rss_feed",
-    link: "https://twitter.quasar.dev",
-  },
-];
 
 export default defineComponent({
   name: "MainLayout",
@@ -151,7 +151,7 @@ export default defineComponent({
     const leftDrawerOpen = ref(false);
 
     return {
-      essentialLinks: linksList,
+    
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
@@ -167,4 +167,6 @@ export default defineComponent({
 </script>
 
 <style lang="sass" scoped>
+
+
 </style>
