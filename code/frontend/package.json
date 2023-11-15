@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "quasar": "^2.10.1"
+   
+  },
+  "scripts": {
+    "dev": "quasar dev"
+ 
+  }
+  
+   
+
+}
